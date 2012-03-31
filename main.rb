@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'data_mapper'
+require 'json'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 
@@ -16,7 +17,9 @@ end
 DataMapper.finalize
 
 get '/' do
-  "Welcome to my page!"
+  mpg = Milage.all
+  content_type :json
+  mpg.to_json
 end
 
 post '/' do 
