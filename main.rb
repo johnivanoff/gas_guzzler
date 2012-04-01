@@ -16,10 +16,16 @@ end
 
 DataMapper.finalize
 
-get '/' do
+get '/.?:format?' do
   mpg = Milage.all
-  content_type :json
-  mpg.to_json
+  case params[:format]
+  when 'json'
+    content_type :json
+    mpg.to_json
+  else
+    @mpg = mpg
+    erb :milage
+  end
 end
 
 post '/' do 
