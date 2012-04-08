@@ -1,4 +1,18 @@
-<h1>milage</h1>
-<% @mpg.each do |x| %>
-  <p><%= x.miles %> <%= x.gallons %> <%= x.mpg %></p>
-<% end %>
+<h1><a href="/">Gas Guzzler</a></h1>
+<h2>milage</h2>
+<table>
+  <tr>
+    <th>Miles</th>
+    <th>Gallons</th>
+    <th>est. MPG</th>
+    <th>Date</th>
+  </tr>
+  <% @mpg.each do |x| %>
+    <tr>
+      <td><%= "%.1f" % x.miles %></td>
+      <td><%= "%.3f" % x.gallons %></td>
+      <td><%= "%.0f" % x.mpg %></td>
+      <td><%= x.created_at.strftime("%x") %></td>
+    </tr>
+  <% end %>
+</table>

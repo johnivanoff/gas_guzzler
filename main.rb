@@ -16,8 +16,8 @@ end
 
 DataMapper.finalize
 
-get '/.?:format?' do
-  mpg = Milage.all
+get '/milage.?:format?' do
+  mpg = Milage.all(:order => [ :created_at.desc ])
   case params[:format]
   when 'json'
     content_type :json
@@ -28,9 +28,13 @@ get '/.?:format?' do
   end
 end
 
+get '/.?:format?' do
+  erb :index
+end
+
 post '/' do 
   mpg = params[:miles].to_f / params[:gallons].to_f
-  fill_up = Milage.new(:miles => params[:miles], :gallons => params[:gallons], :mpg => mpg)
+  fill_up = Milage.new(:miles => params[:miles], :gallons => params[:gallons], :mpg => mpg, :created_at => params[:created_at])
   if fill_up.save
     status 201
   else
