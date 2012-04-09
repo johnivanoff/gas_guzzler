@@ -1,7 +1,20 @@
-<h1>Gas Guzzler</h1>
+<header>
+  <h1>Gas Guzzler</h1>
+</header>
 <form action="/" method="post">
-  <input type="text" name="miles" />
-  <input type="text" name="gallons" />
-  <input type="text" name="created_at" value="<%= Time.now %>" />
-  <input type="submit" value="Gulp">
+  <p>
+    <label for="miles"> Miles since last fill up</label>
+    <input type="number" id="miles" name="miles" />
+  </p>
+  <p>
+    <label for="gallons">How many gallons</label>
+    <input type="number" id="gallons" name="gallons" />
+  </p>
+  <p>
+    <label for="created_at">Date of fill up</label>
+    <input type="text" id="created_at" name="created_at" value="<%= Time.now %>" />
+  </p>
+  <p>
+    <input type="submit" value="Gulp">
+  </p>
 </form>
